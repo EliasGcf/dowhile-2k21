@@ -1,16 +1,19 @@
 import React from 'react';
-import { AntDesign } from '@expo/vector-icons';
 
-import { Button } from '@components/Button';
+import { useAuth } from '@hooks/useAuth';
 
 import { Message } from './Message';
+import { MessageForm } from './MessageForm';
+import { SignInButton } from './SignInButton';
 
-import { Container, HomeHeader, SignInButtonText } from './styles';
+import { Container, HomeHeader } from './styles';
 
 export function Home() {
+  const { user } = useAuth();
+
   return (
     <Container>
-      <HomeHeader showLogoutButton avatarUrl="https://github.com/eliasgcf.png" />
+      <HomeHeader />
 
       <Message
         text="Não vejo a hora de começar esse evento, com certeza vai ser o melhor de todos os
@@ -18,10 +21,7 @@ export function Home() {
         user={{ name: 'Elias Gabriel', avatarUrl: 'https://github.com/eliasgcf.png' }}
       />
 
-      <Button activeOpacity={0.7} variant="secondary">
-        <AntDesign name="github" size={24} />
-        <SignInButtonText>Entrar com o GitHub</SignInButtonText>
-      </Button>
+      {user ? <MessageForm /> : <SignInButton />}
     </Container>
   );
 }

@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 
 import { Home } from '@screens/Home';
+import { AuthProvider } from '@contexts/auth/Provider';
 
 export function App() {
   const [isFontsLoaded] = useFonts({
@@ -12,14 +13,22 @@ export function App() {
   });
 
   if (!isFontsLoaded) {
-    return <AppLoading />;
+    return (
+      <>
+        <StatusBar style="light" />
+
+        <AppLoading />
+      </>
+    );
   }
 
   return (
     <>
       <StatusBar style="light" />
 
-      <Home />
+      <AuthProvider>
+        <Home />
+      </AuthProvider>
     </>
   );
 }
