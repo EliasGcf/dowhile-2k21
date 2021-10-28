@@ -10,11 +10,14 @@ import { Header } from '@components/Header';
 
 export const Container = styled('View', {
   flex: 1,
-  paddingHorizontal: 20,
-  justifyContent: 'space-between',
   backgroundColor: '$blackSecondary',
   paddingTop: getStatusBarHeight() + 24,
-  paddingBottom: isIphoneX() ? getBottomSpace() : 24,
+});
+
+export const Main = styled('View', {
+  flex: 1,
+  // alignItems: 'center',
+  paddingHorizontal: 20,
 });
 
 export const HomeHeader = styled(Header, {
