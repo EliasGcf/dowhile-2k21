@@ -50,17 +50,12 @@ export function MessageList() {
   return (
     <Container>
       <FlatList
+        data={messages}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingTop: 128 }}
-        data={messages}
         ItemSeparatorComponent={() => <View style={{ height: 32 }} />}
         keyExtractor={message => message.id}
-        renderItem={({ item: message }) => (
-          <MessageItem
-            text={message.text}
-            user={{ name: message.user.name, avatarUrl: message.user.avatar_url }}
-          />
-        )}
+        renderItem={({ item: message }) => <MessageItem data={message} />}
       />
     </Container>
   );

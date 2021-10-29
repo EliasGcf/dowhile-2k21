@@ -4,21 +4,23 @@ import React from 'react';
 import { Container, MessageText, UserInfo, UserName } from './styles';
 
 type MessageItemProps = {
-  text: string;
-  user: {
-    avatarUrl: string;
-    name: string;
+  data: {
+    text: string;
+    user: {
+      avatar_url: string;
+      name: string;
+    };
   };
 };
 
-export function MessageItem({ text, user }: MessageItemProps) {
+export function MessageItem({ data }: MessageItemProps) {
   return (
     <Container>
-      <MessageText>{text}</MessageText>
+      <MessageText>{data.text}</MessageText>
 
       <UserInfo>
-        <Avatar size="small" avatarUrl={user.avatarUrl} />
-        <UserName>{user.name}</UserName>
+        <Avatar size="small" avatarUrl={data.user.avatar_url} />
+        <UserName>{data.user.name}</UserName>
       </UserInfo>
     </Container>
   );

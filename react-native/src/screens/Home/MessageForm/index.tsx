@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { theme } from 'stitches.config';
 
+import { api } from '@services/api';
 import { Button } from '@components/Button';
 
 import { ButtonText, Container, TextInput } from './styles';
-import { theme } from 'stitches.config';
 
 export function MessageForm() {
   const [message, setMessage] = useState('');
@@ -18,6 +19,12 @@ export function MessageForm() {
     if (showTextInput && message === '') {
       setShowTextInput(false);
       return;
+    }
+
+    if (showTextInput && message.trim() !== '') {
+      await api.post('messages', { message });
+      setMessage('');
+      setShowTextInput(false);
     }
   }
 
