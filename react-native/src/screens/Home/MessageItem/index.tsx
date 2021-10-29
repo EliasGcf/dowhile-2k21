@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Container, MessageText, UserInfo, UserName } from './styles';
 
-type MessageProps = {
+type MessageItemProps = {
   text: string;
   user: {
     avatarUrl: string;
@@ -11,7 +11,7 @@ type MessageProps = {
   };
 };
 
-export function Message({ text, user }: MessageProps) {
+export function MessageItem({ text, user }: MessageItemProps) {
   return (
     <Container>
       <MessageText>{text}</MessageText>
