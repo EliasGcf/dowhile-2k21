@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { View } from 'react-native';
+import { MotiScrollView } from 'moti';
 import io from 'socket.io-client';
 
 import { api } from '@services/api';
@@ -49,14 +50,18 @@ export function MessageList() {
 
   return (
     <Container>
-      <FlatList
-        data={messages}
-        showsVerticalScrollIndicator={false}
+      <MotiScrollView
         contentContainerStyle={{ paddingTop: 128 }}
-        ItemSeparatorComponent={() => <View style={{ height: 32 }} />}
-        keyExtractor={message => message.id}
-        renderItem={({ item: message }) => <MessageItem data={message} />}
-      />
+        from={{ translateX: 500, opacity: 0 }}
+        animate={{ translateX: 0, opacity: 1 }}
+      >
+        {messages.map(message => (
+          <View key={message.id}>
+            <MessageItem data={message} />
+            <View style={{ height: 32 }} />
+          </View>
+        ))}
+      </MotiScrollView>
     </Container>
   );
 }

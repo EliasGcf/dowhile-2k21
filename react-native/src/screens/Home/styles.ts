@@ -16,7 +16,6 @@ export const Container = styled('View', {
 
 export const Main = styled('View', {
   flex: 1,
-  // alignItems: 'center',
   paddingHorizontal: 20,
 });
 

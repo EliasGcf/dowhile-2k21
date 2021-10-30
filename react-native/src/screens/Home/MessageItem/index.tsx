@@ -1,5 +1,6 @@
-import { Avatar } from '@components/Avatar';
 import React from 'react';
+
+import { Avatar } from '@components/Avatar';
 
 import { Container, MessageText, UserInfo, UserName } from './styles';
 

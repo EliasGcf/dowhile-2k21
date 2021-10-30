@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { theme } from 'stitches.config';
+import { MotiView } from 'moti';
 
 import { api } from '@services/api';
 import { Button } from '@components/Button';
@@ -33,6 +34,7 @@ export function MessageForm() {
       {showTextInput && (
         <TextInput
           multiline
+          autoFocus
           value={message}
           keyboardAppearance="dark"
           onChangeText={text => setMessage(text)}
@@ -41,9 +43,16 @@ export function MessageForm() {
         />
       )}
 
-      <Button onPress={handleSubmit} activeOpacity={0.7} variant="primary">
-        <ButtonText>Enviar Mensagem</ButtonText>
-      </Button>
+      <MotiView
+        transition={{ type: 'timing' }}
+        from={{ translateY: 100, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        exit={{ translateY: 100, opacity: 0 }}
+      >
+        <Button onPress={handleSubmit} activeOpacity={0.7} variant="primary">
+          <ButtonText>Enviar Mensagem</ButtonText>
+        </Button>
+      </MotiView>
     </Container>
   );
 }

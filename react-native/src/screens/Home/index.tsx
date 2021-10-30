@@ -7,6 +7,7 @@ import { MessageForm } from './MessageForm';
 import { SignInButton } from './SignInButton';
 
 import { Container, HomeHeader, Main } from './styles';
+import { AnimatePresence } from 'moti';
 
 export function Home() {
   const { user } = useAuth();
@@ -19,7 +20,9 @@ export function Home() {
         <MessageList />
       </Main>
 
-      {user ? <MessageForm /> : <SignInButton />}
+      <AnimatePresence exitBeforeEnter>
+        {user ? <MessageForm key="MessageForm" /> : <SignInButton key="SignInButton" />}
+      </AnimatePresence>
     </Container>
   );
 }
