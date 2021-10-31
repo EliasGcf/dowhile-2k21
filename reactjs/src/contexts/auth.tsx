@@ -29,9 +29,8 @@ type AuthContextData = {
   signInUrl: string;
 };
 
-const signInUrl = new URL('https://github.com/login/oauth/authorize');
-signInUrl.searchParams.append('scope', 'user');
-signInUrl.searchParams.append('client_id', '68df920cec38caf45c22');
+const signInUrl = new URL('http://localhost:4000/oauth/github');
+signInUrl.searchParams.append('from', 'web');
 
 export const AuthContext = createContext({} as AuthContextData);
 

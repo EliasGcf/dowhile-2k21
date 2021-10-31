@@ -15,11 +15,11 @@ type AuthResponse = {
   user: User;
 };
 
-const CLIENT_ID = '68df920cec38caf45c22';
-const SCOPE = 'read:user';
-
 const USER_STORAGE = '@DoWhile:user';
 const TOKEN_STORAGE = '@DoWhile:token';
+
+const gitHubOAuthURL = new URL('http://localhost:4000/oauth/github');
+gitHubOAuthURL.searchParams.append('from', 'mobile');
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isSigningIn, setIsSigningIn] = useState(true);
@@ -29,10 +29,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       setIsSigningIn(true);
 
-      const authUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=${SCOPE}`;
-
       const authSessionResponse = await AuthSessions.startAsync({
-        authUrl,
+        authUrl: gitHubOAuthURL.toString(),
       });
 
       if (

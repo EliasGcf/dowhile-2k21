@@ -3,6 +3,7 @@ import http from 'http';
 import express from 'express';
 import cors from 'cors';
 import { Server } from 'socket.io';
+import { errors as celebrateErrors } from 'celebrate';
 
 import { router } from './routes';
 
@@ -21,15 +22,4 @@ io.on('connection', socket => {
 app.use(cors());
 app.use(express.json());
 app.use(router);
-
-app.get('/github', (request, response) => {
-  response.redirect(
-    `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`,
-  );
-});
-
-app.get('/signin/callback', (request, response) => {
-  const { code } = request.query;
-
-  response.json(code);
-});
+app.use(celebrateErrors());
